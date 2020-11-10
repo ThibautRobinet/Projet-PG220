@@ -1,0 +1,147 @@
+@startuml
+package src.main.java.game{
+GameHandle <|-- StandardGameHandle
+GameHandle *-- Game
+Game *-- Symbols
+}
+
+package src.main.java.board{
+Board <|-- StandardBoard
+Board *-- Column
+Game *-- Board
+Column *-- Chip
+}
+
+package src.main.java.player{
+Game *-- Player
+Player *-- IA
+IA <|-- IASup
+Player *-- PlayerType
+}
+
+Main *--  GameHandle
+Main *--  UserInterface
+
+GameHandle *-- Game
+GameHandle *-- UserInterface
+GameHandle *-- History
+
+
+class Main{ 
+-GameHandle game
+-UserInterface mInterface
+-boolean running
++Main()
+}
+
+class UserInterface {
++UserInterface()
+-void onInputMessage(String userInput)
+-void outputMessage(String gameMessage)
+} 
+
+class History {
+-String logFilePath 
++History(String logFilePath)
+-void createFile()
+-void cleanFile()
+-writeLineInFile(String line)
+}
+
+class GameHandle {
+-int numberOfPlayer
+-Game game
+-UserInterface mInterface
+-History mHistory
++GameHandle()
+-void askingNumberOfPlayers()
+-void askingSizeOfBoard()
+-void askingWhoIsPlayer(Player player)
+-void checkIfPlayerWin(Game mGame)
+
+class StandardGameHandle{
+}
+
+enum Symbols {
+"x"
+"O"
+"#"
+"@"
+}
+
+class Game {
+-int numberOfPlayer
+-Board gameBoard
+-List<Player> gamePlayer
+-int nextPlayerToMove
++Game(int numberOfPlayer, Board mBoard)
+-int getNumOfPlayerPlayer();
+-void playerHadPlayed()
+-Player getNextPlayerToMove(); 
++boolean isAWinner()
++void resetBoard();
+}
+
+enum PlayerType{
+human,
+ia
+}
+
+class Player {
+int numPlayer;
+-int score
+-String name
+-String symbPlayer
+-Type playerType
+-IA playerIA
++Player(int numPlayer,String symbPlayer, Type playerType )
+-int getNumPlayer()
+-String getSymbol();
+-void setPlayerName(String name);
+-String getPlayerName();
+-Void playerWin();
+-void playerMove(int numeroColumn, Board mBoard)
+}
+
+class IA{
++IA()
+-void iaMove(Board mBoard)
+}
+
+class IASup {
+-@orverride void iaMove(Board mBoard)
+}
+
+class Board {
+-int nbColumns
+-int nbLines
+-List<Column> columnList
++Board(int nbLines,int nbColumns)
+-int getNbLines()
+-int getNbColumns()
+-Chip getChip(int line, int column)
+-void addChip(int numeroColumn, Chip newChip)
+-String toString()#Affichage Custom
+}
+
+class StandardBoard {
++Board()
+-@Override String toString()#Affichage Standard
+}
+
+class Column {
+-int nbLines
+-List<Chip> chipFilling
++Column(int nbLines)
+-void addChip(Chip newChip)
+-String toString()
+-int getNbLines()
+-void cleanColumn()
+}
+
+class Chip {
+-String Symbol
+-String toString()
+-String getSymbol()
+}
+@enduml

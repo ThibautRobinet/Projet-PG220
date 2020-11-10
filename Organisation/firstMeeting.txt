@@ -1,0 +1,229 @@
+Projet PG220 
+
+Langue anglais ✅
+
+Class :
+
+Class Main
+//ceci est notre “main”,
+Var:
+	GameHandle game;
+	UserInterface mInterface;
+	boolean running;
+Constructeur:
+	main(){
+		this.game = new StandardGameHandle();
+		while(running)
+	}
+Functions:
+
+
+Class UserInterface
+// cette classe doit traiter l’interprétation des commandes, et l’affichage des erreurs dans la console
+//tout est private 
+Var:
+
+Constructeur:
+	userInterface()
+Functions:
+	void onInputMessage(String userInput); ##Switch case des différentes fonctions [sortir, type & nom du joueur, colonne dans 		lequel on joue]
+	void outputMessage(String gameMessage);
+
+
+Class History
+Var:
+	String logFilePath;
+Constructeur:
+	History(String logFilePath){}
+Function :
+	void createFile();
+	void cleanFile();
+	void writeLineInFile(String line);
+
+
+Class GameHandle
+//nombre de joueurs, score, démarre et termine une manche
+//tout est private
+Var :
+	int numberOfPlayer;
+	Game game;
+	UserInterface mInterface;
+	History mHistory;
+Constructeur
+	GameHandle(){
+	askingNumberOfPlayers();
+	askingSizeOfBoard();
+	askingWhoisPlayer()
+}
+Functions :
+	void askingNumberOfPlayers()
+	void askingSizeOfBoard()
+	void askingWhoIsPlayer(Player player)
+	void checkIfPlayerWin(Game mGame)
+	
+Sous-class StandardGameHandle
+//nombre de joueurs, score, démarre et termine une manche
+//tout est private
+Var:
+Constructeur
+	GameHandle(){
+	numberOfPlayer = 2;
+	Board mBoard = new StandardBoard();
+	this.game = new Game(numberOfPlayer, mBoard);
+	askingWhoIsPlayer() /* peut être a déplacer dans le constructeur du player */
+}
+Functions :
+	void askingWhoIsPlayer(Player player)
+	
+
+Class Game
+//tout private
+Var:
+	int numberOfPlayer;
+	Board gameBoard
+	List<Player> gamePlayer;
+	int nextPlayerToMove
+
+Enum Symbols{
+	“x”,
+	“O”,
+	“#”,
+	“@“
+}
+
+Constructeur:
+	Game(int numberOfPlayer, Board mBoard);
+Functions:
+	int getNumOfPlayerPlayer();
+	void playerHadPlayed();##Change the value of nextPlayerToMove
+	Player getNextPlayerToMove(); 
+	public boolean isAWinner()##remarque de pilou le best, appelé la function seulement quand a joueur a joué 4fois
+	public void resetBoard();
+Erreurs:
+	//erreur column pleine
+
+
+Package player
+Class Player
+//tout private
+Var:
+	int numPlayer;
+	int score;
+	String name;
+	String symbPlayer;
+	PlayerType playerType;
+	IA playerIA;
+ Public Enum Type{
+	human,
+	ia
+}
+Constructeur:
+	Player(int numPlayer,String symbPlayer, Type playerType );
+Functions:
+	int getNumPlayer();
+	String getSymbol();
+	void setPlayerName(String name);
+	String getPlayerName();
+	Void playerWin()
+	void playerMove(int numeroColumn, Board mBoard){
+		Chip mChip = new Chip(symbPlayer);
+		mBoard.addChip(numeroColumn,mChip)
+	}
+Erreurs:
+	//erreur column pleine
+
+Class IA
+//tout private sauf iaMove protected
+Var:
+	Player iaPlayer;
+Constructeur:
+	IA(Player mPlayer);
+Functions:
+	void iaMove(Board mBoard){
+		//rien 
+	int i = randint(mBoard.getColumn);
+	iaPlayer.playerMove(i,mBoard);
+	}
+Erreurs:
+	//erreur column pleine
+
+Sous Class IASup
+Functions:
+	@Override
+	void iaMove(Board mBoard){};
+
+
+Package Board :
+Class Board 
+//tout qui est private sauf toString protected
+Var:
+	int nbColumns;
+	int nbLines;
+	List<Column> columnList;
+	
+Constructeur:
+	Board(int nbLines,int nbColumns ){
+		this.nbColums = nbColumns;
+		this.nbLines = nbLines;
+		this.columnList = new ArrayList<>();
+		For (int I = 0; I< nbcolumn){
+			columnList.append(new Column(nbLines));
+		}
+	}
+Functions:
+	int getNbLines();
+	int getNbColumns();
+	Chip getChip(int line, int column);##renvoie le jeton si il exite, null sinon
+	void addChip(int numeroColumn, Chip newChip),##Ajouter un jeton{
+	Column mColumn = columnList[numeroColumn];
+	mColumn.addChip(newChip);
+}
+	String toString();##Afficher la grille de jeu potentiellement custom
+	void cleanBoard();
+Erreurs:
+	//regarder dans le sujets la tailles de la board 	//erreur column pleine
+
+Sous Class StandardBoard
+//tout est private
+Var:
+Constructeur:
+	Board(){
+	super.Board(6,7);
+}
+Functions:
+	@Override
+	String toString();##Affichage standard
+Erreurs:
+	
+
+Class Column
+//tout est private
+Var:
+	int nbLines;
+	List<Chip> chipFilling;
+Constructeur:
+	Column(int nbLines);
+Functions:
+	void addChip(Chip newChip);##Ajouter le jeton a chipFilling
+	String toString(); ##Affiche la ligne | mettre le symbole du jeton si yen a un et “.” sinon
+	int getNbLines(); ## renvoie le nombre de ligne remplie dans cette colonne
+	void cleanColumn();
+Erreurs:
+	la taille de chipFilling < nbLines;
+
+Class Chip
+//tout est private
+Var:
+	String Symbol;
+Constructeur:
+	Chip(String symbol);
+Functions:
+	String toString(); ##Affiche le jeton
+	String getSymbol(); ##retournes le symbole du jeton
+
+Questions au prof :
+	* Le “$” dans les images d’exemples du sujet, font partis de la commande ou c’est le caractère afficher par l’invite de commande automatiquement ?
+
+Idées de bonus : 	* IA avec allo d’intelligence artificielle
+	* mode multijoueur 2 console, puis 2 ordinateurs
+	* système de sauvegarde de partie [pause = >sauvegarde dans un fichier resume <path> reprendre la partie]
