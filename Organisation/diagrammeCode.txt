@@ -58,8 +58,9 @@ class GameHandle {
 -void askingSizeOfBoard()
 -void askingWhoIsPlayer(Player player)
 -void checkIfPlayerWin(Game mGame)
-
+}
 class StandardGameHandle{
++StandardGameHandle()
 }
 
 enum Symbols {
