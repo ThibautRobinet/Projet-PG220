@@ -1,6 +1,6 @@
-package main.java.player;
+package player;
 
-class Player{
+public class Player{
 
 }
 /*
@@ -18,9 +18,11 @@ Var:
 	ia
 }
 Constructeur:
-	Player(int numPlayer,String symbPlayer, Type playerType );
+	Player(int numPlayer,String symbPlayer);
 Functions:
-	int getNumPlayer();
+	int getNum();
+	int getScore();
+	void winGame();
 	String getSymbol();
 	void setPlayerName(String name);
 	String getPlayerName();

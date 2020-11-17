@@ -1,6 +1,9 @@
-package main.java.board;
+package board;
 
-class Board {
+public class Board {
+
+	//doit lever une exception InvalidMoveException avec le message "erreur colonne non valide $num_column" 
+	// si le numero de column passé en args a add chip est < 0 ou > nbColumns
 }
 /*abstractClass Board 
 //tout qui est private sauf toString protected

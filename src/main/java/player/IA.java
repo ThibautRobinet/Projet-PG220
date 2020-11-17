@@ -1,4 +1,4 @@
-package main.java.player;
+package player;
 
 class IA{
 

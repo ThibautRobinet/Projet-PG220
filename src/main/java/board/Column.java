@@ -1,6 +1,10 @@
-package main.java.board;
+package board;
 
 class Column {
+
+
+	//doit lever une exception InvalidMoveException avec le message "erreur colonne pleine $num_column" 
+	// si la colonne dans laquelle on veut ajouter un Chip est déja pleine, ie chipFilling.length() == nbLines  (avant d'ajouter le Chip)
 }
 /*
 Class Column

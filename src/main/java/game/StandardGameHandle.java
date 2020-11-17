@@ -1,7 +1,24 @@
-package main.java.game;
+package game;
 
-class StandardGameHandle extends GameHandle{
-    
+import information.UserInterface;
+import board.StandardBoard;
+import board.Board;
+
+public class StandardGameHandle extends GameHandle {
+
+	
+	public StandardGameHandle(UserInterface mInterface) {
+		super(mInterface);
+	}
+ 
+	@Override
+	protected void initGameHandle(){
+		super.numberOfPlayer = 2;
+		createPlayers();
+		Board mBoard = new StandardBoard();
+		super.game = new Game(numberOfPlayer, mBoard,super.gamePlayers);
+	}
+
 }
 /*
 //nombre de joueurs, score, démarre et termine une manche

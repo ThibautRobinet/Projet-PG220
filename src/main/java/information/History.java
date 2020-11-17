@@ -1,6 +1,6 @@
-package main.java;
+package information;
 
-class History {
+public class History {
 }
 /*
 Class History

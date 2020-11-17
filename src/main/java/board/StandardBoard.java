@@ -1,6 +1,6 @@
-package main.java.board;
+package board;
 
-class StandardBoard extends Board {
+public class StandardBoard extends Board {
 }
 /*
 Sous Class StandardBoard
