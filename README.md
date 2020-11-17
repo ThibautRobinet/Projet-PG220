@@ -3,8 +3,7 @@ Le but de projet est de créer un jeu de puissance 4 dans le terminal.
 
 # Diagramme :
 
-![Alt text](./Organisation/diagramme\ svg.pdf)
-<img src="./Organisation/diagramme\ svg.pdf">
+<img src="./Organisation/diagramme.png">
 
 # Equipe :
 Dream team
