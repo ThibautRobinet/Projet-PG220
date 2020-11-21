@@ -1,4 +1,17 @@
 @startuml
+class Legend{ 
++public var
+-private var
+#protected var
+<u>final var</u>
++public fct()
+-private fct()
+#protected fct()
+}
+note left
+  Ceci n'est pas une classe mais une légende du diagramme
+end note
+
 package src.main.java.game{
 GameHandle <|-- StandardGameHandle
 GameHandle *-- Game
@@ -20,12 +33,13 @@ Player *-- PlayerType
 }
 
 Main *--  GameHandle
-Main *--  UserInterface
-
 GameHandle *-- Game
-GameHandle *-- UserInterface
-GameHandle *-- History
 
+package src.main.java.information{
+GameHandle *-- History
+GameHandle *-- UserInterface
+Main *--  UserInterface
+}
 
 class Main{ 
 -GameHandle game
@@ -36,31 +50,42 @@ class Main{
 
 class UserInterface {
 +UserInterface()
--void onInputMessage(String userInput)
--void outputMessage(String gameMessage)
++void onInputMessage(String userInput)
++void outputMessage(String gameMessage)
 } 
 
 class History {
--String logFilePath 
-+History(String logFilePath)
--void createFile()
--void cleanFile()
--writeLineInFile(String line)
+-<u>String LOG_FILE_PATH = "./log.txt"</u> 
++History()
+-void newGame()
+-void writeNewLine(String line)
++void newManche()
++void playerMove(int playerNum, int column)
++void newPlayer(Player player)
++void playerWin(int playerNum)
++void playersScore(int player1Points, int player2Points)
++void gameEnded()
 }
 
 class GameHandle {
+-<u>int POINTS_TO_WIN = 2</u>
 -int numberOfPlayer
 -Game game
 -UserInterface mInterface
--History mHistory
-+GameHandle()
+-History mHisto
++GameHandle(UserInterface mInterface)
+#void initGameHandle()
+-createPlayers()
 -void askingNumberOfPlayers()
 -void askingSizeOfBoard()
 -void askingWhoIsPlayer(Player player)
 -void checkIfPlayerWin(Game mGame)
+-boolean checkIfPlayerWin()
+-void nextRound()
 }
 class StandardGameHandle{
 +StandardGameHandle()
+#@override void initGameHandle()
 }
 
 enum Symbols {
@@ -75,12 +100,12 @@ class Game {
 -Board gameBoard
 -List<Player> gamePlayer
 -int nextPlayerToMove
-+Game(int numberOfPlayer, Board mBoard)
--int getNumOfPlayerPlayer();
--void playerHadPlayed()
--Player getNextPlayerToMove(); 
-+boolean isAWinner()
-+void resetBoard();
++Game(int numberOfPlayer, Board mBoard, List<Player> gamePlayers)
++int getNumOfPlayerPlayer()
++Player getNextPlayerToMove()
++void playerHadPlayed()
++Board getBoard()
++boolean isWin(int column)
 }
 
 enum PlayerType{
@@ -97,10 +122,9 @@ int numPlayer;
 -IA playerIA
 +Player(int numPlayer,String symbPlayer, Type playerType )
 -int getNumPlayer()
--String getSymbol();
--void setPlayerName(String name);
--String getPlayerName();
--Void playerWin();
+-String getSymbol()
+-void setPlayerName(String name)
+-String getPlayerName()
 -void playerMove(int numeroColumn, Board mBoard)
 }
 
@@ -114,6 +138,10 @@ class IASup {
 }
 
 class Board {
++<u>int LEFT = 0b0001</u>
++<u>int RIGHT = 0b0010</u>
++<u>int DOWN = 0b0100</u>
++<u>int UP = 0b1000</u>
 -int nbColumns
 -int nbLines
 -List<Column> columnList
@@ -122,6 +150,8 @@ class Board {
 -int getNbColumns()
 -Chip getChip(int line, int column)
 -void addChip(int numeroColumn, Chip newChip)
++void playerWin()
+-int getValue(int line, int column, Symbol s, int direction)
 -String toString()#Affichage Custom
 }
 

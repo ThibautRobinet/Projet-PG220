@@ -3,11 +3,12 @@ JC = javac
 B = build
 
 FILES = \
-	src/main/java/board/*.java \
-	src/main/java/game/*.java \
 	src/main/java/information/*.java \
-	src/main/java/player/*.java \
 	src/main/java/Main.java 
+	# src/main/java/board/*.java \
+	# src/main/java/game/*.java \
+	# src/main/java/player/*.java \
+	
 
 all: clean
 	$(JC) $(JFLAGS) $(B) -cp src/main/ $(FILES)

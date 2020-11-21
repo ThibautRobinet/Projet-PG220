@@ -1,6 +1,6 @@
 package board;
 
-class Chip {
+public class Chip {
 }
 /*
 Class Chip

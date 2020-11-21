@@ -3,14 +3,16 @@ package game;
 import java.util.List;
 
 import board.Board;
+import board.Chip;
 import player.Player;
+
 
 public class Game{
 
-	int numberOfPlayer;
-	Board gameBoard;
-	List<Player> gamePlayers;
-	int nextPlayerToMove;
+	private int numberOfPlayer;
+	private Board gameBoard;
+	private List<Player> gamePlayers;
+	private int nextPlayerToMove;
 
 	Game(int numberOfPlayer, Board mBoard, List<Player> gamePlayers){
 		this.numberOfPlayer = numberOfPlayer;
@@ -35,21 +37,22 @@ public class Game{
 		if (nextPlayerToMove >= numberOfPlayer){
 			nextPlayerToMove = 0;
 		}
-		if (isAWinner()){
-			gameBoard.cleanBoard();
-		}
 	}
 
-	private boolean isAWinner(){
-		for (Player p : gamePlayers){
-			if (/*condition pour que p gagne*/){
-				p.winGame();
-				return true;
-			}
-		}
+	public boolean isWin(int column){
+		int line = gameBoard.getTopOfColumn(column);
+		Chip mChip = gameBoard.getChip(line,column);
+		Symbol s = mChip.getSymbol();
+		if ( (1 + gameBoard.getValue(line,column-1,s,Board.LEFT) + gameBoard.getValue(line,column+1,s,Board.RIGHT) ) >= 4)
+			return true;
+		if ( (1 + gameBoard.getValue(line-1,column,s,Board.DOWN) ) >= 4)
+			return true;
+		if ( (1 + gameBoard.getValue(line-1,column-1,s,Board.DOWN|Board.LEFT) + gameBoard.getValue(line+1,column+1,s,Board.UP|Board.RIGHT) ) >= 4)
+			return true;
+		if ( (1 + gameBoard.getValue(line-+1,column-1,s,Board.UP|Board.LEFT) + gameBoard.getValue(line-1,column+1,s,Board.DOWN|Board.RIGHT) ) >= 4)
+			return true;
 		return false;
 	}
-
 }
 /*
 Class Game

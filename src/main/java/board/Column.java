@@ -19,6 +19,7 @@ Functions:
 	String toString(); ##Affiche la ligne | mettre le symbole du jeton si yen a un et “.” sinon
 	int getNbLines(); ## renvoie le nombre de ligne remplie dans cette colonne
 	void cleanColumn();
+	bool isFull();##Renvoie true si la colonne est pleine
 Erreurs:
     la taille de chipFilling < nbLines;
     */

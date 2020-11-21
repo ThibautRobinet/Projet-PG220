@@ -22,7 +22,7 @@ Constructeur:
 Functions:
 	int getNum();
 	int getScore();
-	void winGame();
+	void winGame();##increment the score
 	String getSymbol();
 	void setPlayerName(String name);
 	String getPlayerName();
