@@ -49,6 +49,9 @@ public class Board {
 		return Board;
 	}
 	void cleanBoard(){
+		For (int I = 0; I< nbcolumn){
+			mColumn.cleanColumn(columnList[I]);
+		}
 		return 0;
 	}
 
