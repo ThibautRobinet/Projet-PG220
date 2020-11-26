@@ -16,7 +16,7 @@ public class Player{
 	// 	ia
 	// }
 
-	public Player(int numPlayer, String name,String symbPlayer){
+	public Player(int numPlayer, String name, String symbPlayer){
 		this.numPlayer = numPlayer;
 		this.score = 0;
 		this.name = name;
@@ -51,10 +51,17 @@ public class Player{
 		else{
 			return false;
 		}
-		
 	}
 
-	protected void playerMove(int numeroColumn, Board mBoard){
+	public void playerWin(){
+		this.score ++;
+	}
+
+	public boolean isIA(){
+		return false;
+	}
+
+	public void playerMove(int numeroColumn, Board mBoard){
 		Chip mChip = new Chip(symbPlayer);
 		mBoard.addChip(numeroColumn,mChip);
 	}

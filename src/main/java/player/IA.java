@@ -1,6 +1,6 @@
 package player;
 
-import board.Board;
+import board.*;
 
 class IA extends Player{
 	
@@ -9,9 +9,15 @@ class IA extends Player{
 	}
 
 	@Override
-	protected void playerMove(Board mBoard) {
+	public void playerMove(int numeroColumn, Board mBoard) {// numeroColumn n'est pas utilisé avec IA
+		Chip mChip = new Chip(symbPlayer);
 		int i = randint(mBoard.getColumn());
 		mBoard.addChip(i,mChip);
+	}
+
+	@Override
+	public boolean isIA(){
+		return true;
 	}
 
 }
