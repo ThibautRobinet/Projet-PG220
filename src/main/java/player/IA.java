@@ -1,6 +1,16 @@
 package player;
 
+import board.Board;
+
 class IA{
+	Player iaPlayer;
+
+	IA(Player mPlayer);
+
+	protected void iaMove(Board mBoard) {
+		int i = randint(mBoard.getColumn);
+		iaPlayer.playerMove(i,mBoard);
+	}
 
 }
 /*
