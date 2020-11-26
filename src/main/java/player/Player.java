@@ -2,7 +2,7 @@ package player;
 
 
 import board.Board;
-//import ia.IA;
+//import player.IA;
 
 public class Player{
 	int numPlayer;
@@ -10,13 +10,12 @@ public class Player{
 	String name;
 	String symbPlayer;
 	Type playerType;
-	IA playerIA;
 	// Public Enum Type{
 	// 	human,
 	// 	ia
 	// }
 
-	Player(int numPlayer, int score, String name,String symbPlayer){
+	public Player(int numPlayer, int score, String name,String symbPlayer){
 		this.numPlayer = numPlayer;
 		this.score = score;
 		this.name = name;
@@ -43,15 +42,13 @@ public class Player{
 		this.name = name;
 	}
 
-	private void winGame(){
-		boolean state1 = true;
-		boolean state2 = false;
+	private boolean winGame(){
 		if (getScore()>=2){
 			//System.out.println(state1);
-			return state1;
+			return true;
 		}
 		else{
-			return state2;
+			return false;
 		}
 		
 	}

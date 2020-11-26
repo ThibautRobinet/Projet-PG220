@@ -2,14 +2,16 @@ package player;
 
 import board.Board;
 
-class IA{
-	Player iaPlayer;
+class IA extends Player{
+	
+	public IA(int numPlayer, int score, String name,String symbPlayer){ //super: objet père -->éditer classe de base
+		super(numPlayer, score, name, symbPlayer);
+	}
 
-	IA(Player mPlayer);
-
-	protected void iaMove(Board mBoard) {
-		int i = randint(mBoard.getColumn);
-		iaPlayer.playerMove(i,mBoard);
+	@Override
+	protected void playerMove(Board mBoard) {
+		int i = randint(mBoard.getColumn());
+		mBoard.addChip(i,mChip);
 	}
 
 }
