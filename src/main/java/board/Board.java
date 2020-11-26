@@ -3,11 +3,63 @@ package board;
 import game.Symbol;
 
 public class Board {
+	int nbColumns;
+	int nbLines;
+	List<Column> columnList;
 
 	public static final int LEFT = 0b0001;
 	public static final int RIGHT = 0b0010;
 	public static final int DOWN = 0b0100;
 	public static final int UP = 0b1000;
+
+	Board(int nbLines,int nbColumns ){
+		this.nbColums = nbColumns;
+		this.nbLines = nbLines;
+		this.columnList = new ArrayList<>();
+		For (int I = 0; I< nbcolumn){
+			columnList.append(new Column(nbLines));
+		}
+	}
+
+	int getNbLines(){
+		return this.nbLines;
+	}
+	int getNbColumns(){
+		return this.nbColumns;
+	}
+	int getTopOfColumn(int column){
+		return;
+	}
+	Chip getChip(int line, int column){
+		if (size(mboard.chipFilling)=!0){
+			return Chip;
+		}
+		if (size(mboard.chipFilling)==0){
+			return null;
+		}
+	}
+
+
+	void addChip(int numeroColumn, Chip newChip){
+		Column mColumn = columnList[numeroColumn];
+		mColumn.addChip(newChip);
+	}
+
+	String toString(){
+		return Board;
+	}
+	void cleanBoard(){
+		return 0;
+	}
+
+	bool isFull(){
+		if (size(mBoard.chipFilling)>this.nbLines){
+			return true;
+		}
+	}
+
+}
+
 
 	public boolean isWin(int column){
 		int line = getTopOfColumn(column);

@@ -1,11 +1,47 @@
 package board;
 
 class Column {
+	int nbLines;
+	List<Chip> chipFilling;
+	
+	public Column(int nbLines){
+		this.nbLines = nbLines;
+	}
+
+	void addChip (Chip NewChip){
+		chipFilling.append(Chip);
+	}
+
+	String toString(){
+		if (chipFilling =! null){
+			return Symbol;
+		}
+		if (chipFilling == null){
+			return ".";
+		}
+
+	}
+
+	int getNbLines(){
+		return this.nbLines;
+	}
+
+	void cleanColumn(){
+		return 0;
+	}
+
+	bool isFull(){
+		if (size(chipFilling)>this.nbLines){
+			return true;
+		}
+	}
+}
+
 
 
 	//doit lever une exception InvalidMoveException avec le message "erreur colonne pleine $num_column" 
 	// si la colonne dans laquelle on veut ajouter un Chip est déja pleine, ie chipFilling.length() == nbLines  (avant d'ajouter le Chip)
-}
+
 /*
 Class Column
 //tout est private

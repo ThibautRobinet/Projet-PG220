@@ -1,6 +1,18 @@
 package board;
 
 public class Chip {
+
+	String Symbol;
+
+	public Chip(String symbol){
+		this.symbol = symbol;
+	}
+	public String toString() {
+        return Chip;
+	}
+	public String getSymbol(){
+		return this.symbol;
+	}
 }
 /*
 Class Chip
