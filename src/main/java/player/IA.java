@@ -4,8 +4,8 @@ import board.Board;
 
 class IA extends Player{
 	
-	public IA(int numPlayer, int score, String name,String symbPlayer){ //super: objet père -->éditer classe de base
-		super(numPlayer, score, name, symbPlayer);
+	public IA(int numPlayer, String name,String symbPlayer){ //super: objet père -->éditer classe de base
+		super(numPlayer, name, symbPlayer);
 	}
 
 	@Override

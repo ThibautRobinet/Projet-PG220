@@ -1,7 +1,8 @@
 package player;
 
 
-import board.Board;
+import board.*;
+
 //import player.IA;
 
 public class Player{
@@ -9,32 +10,32 @@ public class Player{
 	int score;
 	String name;
 	String symbPlayer;
-	Type playerType;
+	//Type playerType;
 	// Public Enum Type{
 	// 	human,
 	// 	ia
 	// }
 
-	public Player(int numPlayer, int score, String name,String symbPlayer){
+	public Player(int numPlayer, String name,String symbPlayer){
 		this.numPlayer = numPlayer;
-		this.score = score;
+		this.score = 0;
 		this.name = name;
 		this.symbPlayer = symbPlayer;
 	}
 
-	private int getNum(){
+	public int getNum(){
 		return this.numPlayer;
 	}
 
-	private int getscore(){
-		return this.score;
+	public int getScore(){
+		return score;
 	}
 
-	private String getSymbol(){
+	public String getSymbol(){
 		return this.symbPlayer;
 	}
 
-	private String getPlayerName(){
+	public String getPlayerName(){
 		return this.name;
 	}
 
@@ -42,8 +43,8 @@ public class Player{
 		this.name = name;
 	}
 
-	private boolean winGame(){
-		if (getScore()>=2){
+	public boolean winGame(){
+		if (this.getScore()>=2){
 			//System.out.println(state1);
 			return true;
 		}
@@ -53,7 +54,7 @@ public class Player{
 		
 	}
 
-	private playerMove(int numeroColumn, Board mBoard){
+	protected void playerMove(int numeroColumn, Board mBoard){
 		Chip mChip = new Chip(symbPlayer);
 		mBoard.addChip(numeroColumn,mChip);
 	}
