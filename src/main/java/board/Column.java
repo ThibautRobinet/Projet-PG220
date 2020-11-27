@@ -1,39 +1,61 @@
 package board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Column {
 	int nbLines;
 	List<Chip> chipFilling;
 	
 	public Column(int nbLines){
 		this.nbLines = nbLines;
+		this.chipFilling = new ArrayList<>();
 	}
 
-	void addChip (Chip NewChip){
-		chipFilling.append(Chip);
+	public void addChip (Chip NewChip){
+		chipFilling.add(NewChip);
 	}
 
-	String toString(){
-		if (chipFilling =! null){
-			return Symbol;
+	public String toString(){
+		String column = "";
+		for (int i = nbLines-1; i >= 0;i--){
+			Chip mChip = getChip(i);
+			if (mChip == null)
+				column+=".\n";
+			else
+				column+= mChip.getSymbol() + "\n";
 		}
-		if (chipFilling == null){
-			return ".";
-		}
-
+		return column;
 	}
 
-	int getNbLines(){
+	public int getTopOfColumn(){
+		int lastChip = chipFilling.size() - 1;
+		/*if (lastChip > 0)
+			return chipFilling.get(lastChip);
+		return null;*/
+		return lastChip;
+	}
+
+	public int getNbLines(){
 		return this.nbLines;
 	}
 
-	void cleanColumn(){
-		return 0;
+	public void cleanColumn(){
+		chipFilling.clear();
 	}
 
-	bool isFull(){
-		if (size(chipFilling)>this.nbLines){
+	public boolean isFull(){
+		if (this.chipFilling.size() >= this.nbLines){
 			return true;
 		}
+		return false;
+	}
+
+	public Chip getChip(int line){
+		if (line >= 0 && line < chipFilling.size()){
+			return chipFilling.get(line);
+		}
+		return null;
 	}
 }
 

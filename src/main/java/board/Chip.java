@@ -2,13 +2,13 @@ package board;
 
 public class Chip {
 
-	String Symbol;
+	private String symbol;
 
 	public Chip(String symbol){
 		this.symbol = symbol;
 	}
 	public String toString() {
-        return Chip;
+        return this.symbol;
 	}
 	public String getSymbol(){
 		return this.symbol;

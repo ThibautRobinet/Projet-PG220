@@ -1,25 +1,30 @@
 package board;
 
 public class StandardBoard extends Board {
-	public Board(){
-		super.Board(6.7);
+	public StandardBoard(){
+		super(6,7);
 }
-	@Override
+	/*@Override
 	public String toString(){
-		return Board;
-	}
+		String board = "";
+		for (int l = nbLines ; l >= 0; l--){
+			for (int c = 0 ; c < nbColumns ;c++){
+				if (l == nbLines){
+					board += (c+1)+" ";
+				}
+				else{
+				Chip mChip = columnList.get(c).getChip(l);
+				if (mChip == null)
+					board += ". ";
+				else
+					board += mChip.getSymbol() + " ";
+				}
+			}
+			if (l != 0)
+				board += "\n";
+		}
+		return board;
+	}*/
 }
-/*
-Sous Class StandardBoard
-//tout est private
-Var:
-Constructeur:
-	Board(){
-	super.Board(6,7);
-}
-Functions:
-	@Override
-	String toString();##Affichage standard
-Erreurs:
-    */
+
 	
