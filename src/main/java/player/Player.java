@@ -61,9 +61,10 @@ public class Player{
 		return false;
 	}
 
-	public void playerMove(int numeroColumn, Board mBoard){
+	public int playerMove(int numeroColumn, Board mBoard) throws InvalidMoveException {
 		Chip mChip = new Chip(symbPlayer);
-		mBoard.addChip(numeroColumn,mChip);
+		mBoard.addChip(numeroColumn-1,mChip);//le nom des colonnes va de 1->size mais l'indice des collonnes va de 0->size-1
+		return numeroColumn-1;
 	}
 
 }
