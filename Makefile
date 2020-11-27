@@ -7,11 +7,12 @@ FILES = \
 	src/main/java/board/*.java \
 	src/main/java/game/*.java \
 	src/main/java/player/*.java \
-	src/main/java/Main.java 
+	src/main/java/Main.java \
+	src/Test/Test.java
 	
 
 all: clean
 	$(JC) $(JFLAGS) $(B) -cp src/main/ $(FILES)
-	java -cp build Main
+	java -cp build Test
 clean:
 	rm -rf build*/*

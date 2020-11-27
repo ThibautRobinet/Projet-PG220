@@ -11,7 +11,7 @@ class Main {
 
 	public static void main(String[] args){
 		mInterface = new UserInterface();
-		mGameHandle = new StandardGameHandle(mInterface);
+		mGameHandle = new GameHandle(mInterface);
 		running = true;
 		while(running){
 			//the game is running

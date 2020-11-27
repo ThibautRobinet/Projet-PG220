@@ -12,7 +12,7 @@ public class IA extends Player{
 	public int playerMove(int numeroColumn, Board mBoard) throws InvalidMoveException {
 		// numeroColumn n'est pas utilisé avec IA
 		Chip mChip = new Chip(symbPlayer);
-		int i = 1 + (int)( Math.random() * (mBoard.getNbColumns()-1) );
+		int i = (int)( Math.random() * (mBoard.getNbColumns()) );
 		mBoard.addChip(i,mChip);
 		return i;
 	}
