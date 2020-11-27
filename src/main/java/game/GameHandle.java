@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import board.Board;
+import board.InvalidMoveException;
 import information.History;
 import information.UserInterface;
 import player.Player;
+import player.IA;
 
 
 public class GameHandle{
 	
 	private final int POINTS_TO_WIN = 2;
 
-	private Game game;
-	private int numberOfPlayer;
-	private List<Player> gamePlayers;
+	protected Game game;
+	protected int numberOfPlayer;
+	protected List<Player> gamePlayers;
 
 	private UserInterface mInterface;
 	private History mHisto;
@@ -25,7 +27,7 @@ public class GameHandle{
 		this.mInterface = mInterface;
 		this.mHisto = new History();
 		initGameHandle();
-		//askingWhoisPlayer();
+		System.out.println(game.getBoard().toString());
 	}
 
 	protected void initGameHandle(){
@@ -34,13 +36,11 @@ public class GameHandle{
 		askingSizeOfBoard();
 	}
 
-	private void createPlayers(){
+	protected void createPlayers(){
 		this.gamePlayers = new ArrayList<>();
 		for (int i = 1; i <= numberOfPlayer;i++){
-			Player p = new Player(i,Symbol.values()[i-1]);
-			askingWhoIsPlayer(p);
+			Player p = askingWhoIsPlayer(i,Symbol.values()[i-1]);
 			gamePlayers.add(p);
-			mHisto.newPlayer(i, "humain", "Thibaut");
 		}
 	}
 
@@ -85,26 +85,31 @@ public class GameHandle{
 		}
 	}
 
-	private void askingWhoIsPlayer(Player player){
-		String message = "Joueur "+player.getNum()+"?";
+	private Player askingWhoIsPlayer(int num, Symbol s){
+		String message = "Joueur "+num+"?";
 		String ans = mInterface.onInputMessage(message);
 
 		String[] results = ans.split(" ");
 		if (results.length != 2){
 			String error = "Two arguments are required, separate by space";
 			mInterface.outputMessage(error);
-			askingSizeOfBoard();
+			return askingWhoIsPlayer(num,s);
 		}
 		else{
 			//convert results to int 
 			//deal with format error
-			if ( results[0].equals("humain") || results[0].equals("ia") ){//le premier arguments est valide
-
+			if ( results[0].equals("humain") ){//le premier arguments est valide
+				mHisto.newPlayer(num, "humain", results[1]);
+				return new Player(num,results[1],s.getSymbol());
+			}
+			else if ( results[0].equals("ia") ){
+				mHisto.newPlayer(num, "ia", results[1]);
+				return new IA(num,results[1],s.getSymbol());
 			}
 			else{
 				String error = "First argument must be humain or ia";
 				mInterface.outputMessage(error);
-				askingWhoIsPlayer(player);
+				return askingWhoIsPlayer(num,s);
 			}
 		}
 	}
@@ -124,17 +129,24 @@ public class GameHandle{
 		Player p = game.getNextPlayerToMove();
 		
 		String message = "";
-		String ans = mInterface.onInputMessage(message);
+		String ans = "0";
+		//System.out.println(p.getPlayerName()+"?");
+		if( !p.isIA())
+			ans = mInterface.onInputMessage(message);
 
+		
 		//convert ans to int 
 		//deal with format error
 		try {
-			int column = Integer.parseInt(ans);
-			p.playerMove(column,game.getBoard());
-			mHisto.playerMove(p.getNum(), column);
-			if (game.getBoard().isWin(column)){
+			int column = Integer.parseInt(ans) ;
+			int res = p.playerMove(column,game.getBoard());
+			mHisto.playerMove(p.getNum(),res +1);
+			game.playerHadPlayed();
+			System.out.println(game.getBoard().toString());
+			if (game.getBoard().isWin(res)){
 				p.playerWin();
 				mHisto.playerWin(p.getNum());
+				mHisto.playersScore(gamePlayers);
 				game.getBoard().cleanBoard();
 			}
 			else if (game.getBoard().isFull()){
@@ -146,12 +158,12 @@ public class GameHandle{
 			mInterface.outputMessage(e.toString());
 			nextRound();
 		}
-		catch (NumberFormatException e)
-		{	mInterface.outputMessage("Erreur saisie colonne "+ans);
+		catch (NumberFormatException e){
+			mInterface.outputMessage("Erreur saisie colonne "+ans);
 			mInterface.outputMessage(e.toString());
 			nextRound();
 		}
-
+		
 	}
 }
 /*

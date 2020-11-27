@@ -39,7 +39,7 @@ public class Game{
 		}
 	}
 
-	public boolean isWin(int column){
+	/*public boolean isWin(int column){
 		int line = gameBoard.getTopOfColumn(column);
 		Chip mChip = gameBoard.getChip(line,column);
 		Symbol s = mChip.getSymbol();
@@ -52,7 +52,7 @@ public class Game{
 		if ( (1 + gameBoard.getValue(line-+1,column-1,s,Board.UP|Board.LEFT) + gameBoard.getValue(line-1,column+1,s,Board.DOWN|Board.RIGHT) ) >= 4)
 			return true;
 		return false;
-	}
+	}*/
 }
 /*
 Class Game

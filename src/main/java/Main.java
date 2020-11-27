@@ -1,29 +1,27 @@
 import information.History;
-
-//import game.GameHandle;
-//import game.StandardGameHandle;
-//import information.UserInterface;
+import game.GameHandle;
+import game.StandardGameHandle;
+import information.UserInterface;
 
 class Main {
 
-	//static GameHandle mGameHandle;
-	//static UserInterface mInterface;
-	//static boolean running;
+	static GameHandle mGameHandle;
+	static UserInterface mInterface;
+	static boolean running;
 
 	public static void main(String[] args){
-		/*mInterface = new UserInterface();
-		mGameHandle = new GameHandle(mInterface);
+		mInterface = new UserInterface();
+		mGameHandle = new StandardGameHandle(mInterface);
 		running = true;
 		while(running){
 			//the game is running
 			mGameHandle.nextRound();
 			//if a player win we stop the program
 			running = !mGameHandle.checkIfPlayerWin();
-		}*/
+		}
 
-		History mHisto = new History();
-
-		/*mHisto.newManche();
+		/*History mHisto = new History();
+		mHisto.newManche();
 		mHisto.newPlayer(1, "humain", "John");
 		mHisto.newPlayer(1, "ia", "Dark Vador");
 		mHisto.playerMove(1, 1);

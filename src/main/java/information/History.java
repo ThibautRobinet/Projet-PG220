@@ -7,6 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+
+import player.Player;
 
 public class History {
 
@@ -58,8 +61,16 @@ public class History {
 		}
 	}
 
-	public void playersScore(int player1Points,int player2Points){
-		String line = String.format("Score %d - %d", player1Points,player2Points);
+	public void playersScore(List<Player> listPlayers){
+		String line = "Score ";
+		boolean first = true;
+		for (Player p : listPlayers){
+			if (!first){
+				line += " - ";
+			}
+			line += p.getScore();
+			first = false;
+		}
 		writeNewLine(line);
 	}
 

@@ -1,0 +1,4 @@
+Joueur 1 est humain 44
+Joueur 2 est humain 44
+Joueur 1 joue 2
+Joueur 2 joue 3
