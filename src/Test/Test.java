@@ -18,6 +18,7 @@ import information.UserInterface;
 public class Test {
 	public static void main(String[] args) {
         Fenetre fenetre = new Fenetre();
+        new ImageJFrame();
         fenetre.setVisible(true);
         Fenetre options = new Fenetre();
         options.setTitle("Options de configuration");
