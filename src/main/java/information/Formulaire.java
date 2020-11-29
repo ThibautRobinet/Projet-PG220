@@ -28,13 +28,13 @@ public class Formulaire{
     public Formulaire() {
 
         frame = new JFrame();
-        frame.setBounds(100, 100, 500, 900);
+        frame.setBounds(100, 100, 400, 600);
         frame.setTitle("Options de configuration");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
 
-        textField = new JTextField();
+        textField = new JTextField(100);
         textField.setBounds(128, 28, 86, 20);
         frame.getContentPane().add(textField);
         textField.setColumns(10);
@@ -46,6 +46,11 @@ public class Formulaire{
 
         //Name1.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+        textField_1 = new JTextField(10);
+        textField_1.setBounds(128, 28, 86, 20);
+        frame.getContentPane().add(textField_1);
+        textField_1.setColumns(10);
+
         JLabel Name2 = new JLabel("Name 2");
         Name2.setBounds(65, 31, 46, 14);
         frame.getContentPane().add(Name2);
@@ -56,6 +61,10 @@ public class Formulaire{
         JLabel type = new JLabel("Type 1");
         type.setBounds(65, 228, 46, 14);
         frame.getContentPane().add(type);
+
+        JRadioButton radioButton = new JRadioButton("");
+        radioButton.setBounds(337, 224, 109, 23);
+        frame.getContentPane().add(radioButton);
         
         JLabel Humain = new JLabel("Humain");
         Humain.setBounds(128, 228, 46, 14);
@@ -68,6 +77,10 @@ public class Formulaire{
         JLabel type2 = new JLabel("Type 2");
         type2.setBounds(65, 228, 46, 14);
         frame.getContentPane().add(type2);
+
+        JRadioButton radioButton_1 = new JRadioButton("");
+        radioButton_1.setBounds(162, 224, 109, 23);
+        frame.getContentPane().add(radioButton_1);
          
         JLabel Humain2 = new JLabel("Humain");
         Humain2.setBounds(128, 228, 46, 14);
@@ -98,21 +111,11 @@ public class Formulaire{
     textField_2.setColumns(10);
      
      
-
-     
     JButton btnClear = new JButton("Clear");
      
-    btnClear.setBounds(312, 387, 89, 23);
+    btnClear.setBounds(180, 387, 89, 23);
     frame.getContentPane().add(btnClear);
      
-     
-    JRadioButton radioButton = new JRadioButton("");
-    radioButton.setBounds(337, 224, 109, 23);
-    frame.getContentPane().add(radioButton);
-     
-    JRadioButton radioButton_1 = new JRadioButton("");
-    radioButton_1.setBounds(162, 224, 109, 23);
-    frame.getContentPane().add(radioButton_1);
      
     JLabel lblOccupation = new JLabel("Nombre de manches gagnantes pour une partie");
     lblOccupation.setBounds(65, 288, 67, 14);
@@ -130,11 +133,11 @@ public class Formulaire{
     frame.getContentPane().add(comboBox);
      
      
-    JButton btnSubmit = new JButton("submit");
+    JButton btnSubmit = new JButton("Submit");
      
-    btnSubmit.setBackground(Color.BLUE);
-    btnSubmit.setForeground(Color.GREEN);
-    btnSubmit.setBounds(65, 387, 89, 23);
+    btnSubmit.setBackground(Color.BLACK);
+    btnSubmit.setForeground(Color.RED);
+    btnSubmit.setBounds(110, 387, 89, 23);
     frame.getContentPane().add(btnSubmit);
  
     }
