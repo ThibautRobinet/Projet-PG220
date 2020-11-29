@@ -2,13 +2,25 @@ import information.*;
 
 import javax.security.auth.login.Configuration;
 
+// import java.awt.BorderLayout;
+// import java.awt.Color;
+// import java.awt.Dimension;
+// import javax.swing.JComboBox;
+// import javax.swing.JFrame;
+// import javax.swing.JLabel;
+// import javax.swing.JPanel;
+
+// import form.CommonsValidator;
+// import form.FormButtonListener;
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import game.GameHandle;
 import game.StandardGameHandle;
@@ -20,25 +32,27 @@ public class Test {
         Fenetre fenetre = new Fenetre();
         new ImageJFrame();
         fenetre.setVisible(true);
-        Fenetre options = new Fenetre();
-        options.setTitle("Options de configuration");
-        options.setSize(300, 700);
+        // Fenetre options = new Fenetre();
+        // options.setTitle("Options de configuration");
+        // options.setSize(300, 700);
+        Formulaire formulaire = new Formulaire();
 
-        JPanel container = new JPanel();
-        String[] tab = {"humain", "ia"};
-        JComboBox combo = new JComboBox(tab);
-        JLabel label = new JLabel("Choix utilisateur");
+        // JPanel container = new JPanel();
+        // String[] tab = {"humain", "ia"};
+        // JComboBox combo = new JComboBox(tab);
+        // JLabel label = new JLabel("Choix utilisateur");
 
-        container.setBackground(Color.white);
-        container.setLayout(new BorderLayout());
-        combo.setPreferredSize(new Dimension(100, 30));
+        // container.setBackground(Color.white);
+        // container.setLayout(new BorderLayout());
+        // combo.setPreferredSize(new Dimension(100, 30));
 
-        JPanel top = new JPanel();
-        top.add(label);
-        top.add(combo);
-        container.add(top, BorderLayout.NORTH);
-        options.setContentPane(container);     
-        options.setVisible(true);
+        // JPanel top = new JPanel();
+        // top.add(label);
+        // top.add(combo);
+        // container.add(top, BorderLayout.NORTH);
+        // options.setContentPane(container);     
+        //options.setVisible(true);
+        formulaire.frame.setVisible(true);
         
 
         
