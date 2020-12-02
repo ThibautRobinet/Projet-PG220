@@ -13,13 +13,13 @@ import player.IA;
 
 public class GameHandle{
 	
-	private final int POINTS_TO_WIN = 2;
+	protected int POINTS_TO_WIN = 2;
 
 	protected Game game;
 	protected int numberOfPlayer;
 	protected List<Player> gamePlayers;
 
-	private UserInterface mInterface;
+	protected UserInterface mInterface;
 	private History mHisto;
 	
 
@@ -27,13 +27,13 @@ public class GameHandle{
 		this.mInterface = mInterface;
 		this.mHisto = new History();
 		initGameHandle();
-		System.out.println(game.getBoard().toString());
 	}
 
 	protected void initGameHandle(){
 		askingNumberOfPlayers();
 		createPlayers();
 		askingSizeOfBoard();
+		System.out.println(game.getBoard().toString());
 	}
 
 	protected void createPlayers(){
@@ -130,7 +130,6 @@ public class GameHandle{
 		
 		String message = "";
 		String ans = "0";
-		//System.out.println(p.getPlayerName()+"?");
 		if( !p.isIA())
 			ans = mInterface.onInputMessage(message);
 
@@ -166,23 +165,3 @@ public class GameHandle{
 		
 	}
 }
-/*
-Class GameHandle
-//nombre de joueurs, score, démarre et termine une manche
-//tout est private
-Var :
-	int numberOfPlayer;
-	Game game;
-	UserInterface mInterface;
-Constructeur
-	GameHandle(UserInterface mInterface){
-	askingNumberOfPlayers();
-	askingSizeOfBoard();
-	askingWhoisPlayer()
-}
-Functions :
-	void askingNumberOfPlayers()
-	void askingSizeOfBoard()
-	void askingWhoIsPlayer(Player player)
-	void checkIfPlayerWin(Game)
-*/

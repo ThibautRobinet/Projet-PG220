@@ -16,3 +16,8 @@ all: clean
 	java -cp build Test
 clean:
 	rm -rf build*/*
+	rm -rf log.txt
+	rm -rf ./.DS_Store
+	rm -rf ./src/.DS_Store
+	rm -rf ./src/main/.DS_Store
+	rm -rf ./src/main/java/.DS_Store

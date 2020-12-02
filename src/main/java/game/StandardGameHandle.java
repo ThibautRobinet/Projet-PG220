@@ -17,22 +17,7 @@ public class StandardGameHandle extends GameHandle {
 		createPlayers();
 		Board mBoard = new StandardBoard();
 		super.game = new Game(numberOfPlayer, mBoard,super.gamePlayers);
+		System.out.println(game.getBoard().toString());
 	}
 
 }
-/*
-//nombre de joueurs, score, démarre et termine une manche
-//tout est private
-Var:
-Constructeur
-	GameHandle(UserInterface mInterface){
-	numberOfPlayer = 2;
-	Board mBoard = new StandardBoard();
-	this.game = new Game(numberOfPlayer, mBoard);
-	askingWhoIsPlayer() / peut être a déplacer dans le constructeur du player /
-}
-Functions :
-	void askingNumberOfPlayers()
-	void askingSizeOfBoard()
-	void askingWhoIsPlayer(Player player)
-*/
