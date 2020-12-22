@@ -15,7 +15,10 @@ import player.Player;
 public class History {
 
 	private final String LOG_FILE_PATH = "./log.txt";
+	private final String KNN_FILE_PATH = "./human_move.txt";
 	private PrintWriter writer;
+	private PrintWriter knnWriter;
+	private PrintWriter player1Writer,player2Writer;
 
 	public History() {
 		newGame();
@@ -24,6 +27,11 @@ public class History {
 	void newGame() {
 		try {
 			this.writer = new PrintWriter(LOG_FILE_PATH, "UTF-8");
+			File f = new File(KNN_FILE_PATH);
+			FileWriter fw = new FileWriter(f, true);
+			this.knnWriter = new PrintWriter(fw);
+			this.player1Writer = new PrintWriter("./palyer1.txt", "UTF-8");
+			this.player2Writer = new PrintWriter("./palyer2.txt", "UTF-8");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("error 1");
@@ -31,6 +39,10 @@ public class History {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			System.out.println("error 2");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error 3");
 			e.printStackTrace();
 		}
 	}
@@ -59,6 +71,12 @@ public class History {
 		else{
 			String line = String.format("Joueur %d gagne", playerNum);
 			writeNewLine(line);
+			if (playerNum == 1){
+				saveMove("./palyer1.txt");
+			}
+			else{
+				saveMove("./palyer2.txt");
+			}
 		}
 	}
 
@@ -83,6 +101,19 @@ public class History {
 	public void gameEnded(){
 		writer.println("Partie finie");
 		writer.close();
+		knnWriter.close();
+	}
+
+	public void saveHumanMove(String s, int m, int numPlayer){
+		if (numPlayer == 1){
+			player1Writer.println(s+"/"+m);
+			player1Writer.flush();
+		}
+		else{
+			player2Writer.println(s+"/"+m);
+			player2Writer.flush();
+		}
+		
 	}
 
 	/**
