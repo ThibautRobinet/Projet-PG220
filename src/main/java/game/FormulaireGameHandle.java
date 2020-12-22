@@ -2,19 +2,19 @@ package game;
 
 import java.util.concurrent.TimeUnit;
 
-import board.Board;
+import game.board.*;
 import information.FenetreInterface;
 import information.Formulaire;
 import information.UserInterface;
 
 public class FormulaireGameHandle extends GameHandle {
 
-	public FormulaireGameHandle(UserInterface mInterface) {
+	public FormulaireGameHandle(UserInterface mInterface) throws QuitException{
 		super(mInterface);
 	}
 
 	@Override
-	protected void initGameHandle() {
+	protected void initGameHandle() throws QuitException {
 		Formulaire formulaire = new Formulaire();
 		formulaire.setVisible(true);
 		while (!formulaire.gameIsStarted()) {
@@ -24,26 +24,23 @@ public class FormulaireGameHandle extends GameHandle {
 			}
 		}
 		formulaire.setVisible(false);
-		super.numberOfPlayer = formulaire.getNumberOfPlayer();
-		super.POINTS_TO_WIN = formulaire.getPointsToWin();
-		super.gamePlayers = formulaire.getAllPlayers();
+		this.numberOfPlayer = formulaire.getNumberOfPlayer();
+		this.POINTS_TO_WIN = formulaire.getPointsToWin();
+		this.gamePlayers = formulaire.getAllPlayers();
 		int lines = formulaire.getLines();
 		int columns = formulaire.getColumns();
 		Board mBoard = new Board(lines,columns);
-		super.game = new Game(numberOfPlayer, mBoard,super.gamePlayers);
-		if (super.mInterface.isFenetreInterface())
-			((FenetreInterface) super.mInterface).createFenetre(mBoard);
+		this.game = new Game(mBoard,super.gamePlayers);
+		if (this.mInterface.isFenetreInterface()){
+			((FenetreInterface) this.mInterface).createFenetre();
+			updateBoard();
 		}
-
-	public Board getBoard(){
-		return game.getBoard();
 	}
 
-	public void updateFenetre(){
+	public void updateBoard(){
 		Board b = super.game.getBoard();
 		if (super.mInterface.isFenetreInterface())
-			((FenetreInterface) super.mInterface).updateFenetreBoard(b);
+			((FenetreInterface) super.mInterface).updateBoard(b.toString());
 	}
-
 
 }

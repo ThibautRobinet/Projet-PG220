@@ -4,15 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import game.QuitException;
+
 public class UserInterface {
 
     public UserInterface(){
 
     }
 
-    public String onInputMessage(String userInput){
+    public String onInputMessage(String userInput) throws QuitException{
         //Print what user have to do
-        System.out.println(userInput);
+        if (!userInput.equals(""))
+            System.out.println(userInput);
 
         //Enter data using BufferReader 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
@@ -24,6 +27,8 @@ public class UserInterface {
         } catch (IOException e) {
             return null;
         }
+        if (input.equals("sortir"))
+                throw new QuitException();
 
         // Printing the read line 
         return input;

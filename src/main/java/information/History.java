@@ -1,12 +1,13 @@
 package information;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import player.Player;
@@ -20,7 +21,7 @@ public class History {
 		newGame();
 	}
 
-	private void newGame() {
+	void newGame() {
 		try {
 			this.writer = new PrintWriter(LOG_FILE_PATH, "UTF-8");
 		} catch (FileNotFoundException e) {
@@ -74,7 +75,7 @@ public class History {
 		writeNewLine(line);
 	}
 
-	private void writeNewLine(String line){
+	void writeNewLine(String line){
 		writer.println(line);
 		writer.flush();
 	}
@@ -84,15 +85,8 @@ public class History {
 		writer.close();
 	}
 
+	/**
+	 * To fit with AdvancedHistory
+	 */
+	public void saveHumanMove(String s, int m, int numPlayer){}
 }
-/*
-Class History
-Var:
-	String logFilePath;
-Constructeur:
-	History(String logFilePath){}
-Function :
-	void createFile();
-	void cleanFile();
-    void writeLineInFile(String line);
-    */

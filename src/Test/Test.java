@@ -17,23 +17,29 @@ import game.GameHandle;
 import game.StandardGameHandle;
 import game.FormulaireGameHandle;
 import information.UserInterface;
+import game.QuitException;
+
 
 public class Test {
 
-	static GameHandle mGameHandle;
-	static UserInterface mInterface;
-	static boolean running;
-
 	public static void main(String[] args){
+		final GameHandle mGameHandle;
+		final UserInterface mInterface;
+		boolean running;
 		mInterface = new FenetreInterface();
-		mGameHandle = new FormulaireGameHandle(mInterface);
 		running = true;
-		while(running){
-			//the game is running
-			mGameHandle.nextRound();
-			((FormulaireGameHandle) mGameHandle).updateFenetre();
-			//if a player win we stop the program
-			running = !mGameHandle.checkIfPlayerWin();
+		try{
+			mGameHandle = new FormulaireGameHandle(mInterface);
+			while(running){
+				//the game is running
+				mGameHandle.nextRound();
+				((FormulaireGameHandle) mGameHandle).updateBoard();
+				//if a player win we stop the program
+				running = !mGameHandle.checkIfPlayerWin();
+			}
+		}
+		catch (QuitException e){
+			running = false;
 		}
 	}
 }

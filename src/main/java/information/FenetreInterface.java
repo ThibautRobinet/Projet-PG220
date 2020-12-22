@@ -2,9 +2,7 @@ package information;
 
 import java.util.concurrent.TimeUnit;
 
-import board.Board;
-
-public class FenetreInterface extends UserInterface {
+public final class FenetreInterface extends UserInterface {
 
     Fenetre mFenetre;
 
@@ -24,14 +22,30 @@ public class FenetreInterface extends UserInterface {
         return mFenetre.getInput();
     }
 
-    public void createFenetre(Board mBoard){
-        mFenetre = new Fenetre(mBoard);
+    @Override
+    public void outputMessage(String gameMessage){//we wait that the user use button on the fenetre
+        //Print what user have to do
+        super.outputMessage(gameMessage);
+        //Get the number of line of message
+        String[] lines = gameMessage.split("\n");
+        if (lines.length > 1){//more than one line means this is the board
+            updateBoard(gameMessage);
+        }
+    }
+
+    public void createFenetre(){
+        mFenetre = new Fenetre();
         mFenetre.setVisible(true);
     }
 
-    public void updateFenetreBoard(Board b){
-        mFenetre.setBoard(b);
+    public void closeFenetre(){
+        mFenetre.closeWindow();
     }
+
+    public void updateBoard(String s){
+        mFenetre.printBoard(s);
+    }
+
     @Override
     public boolean isFenetreInterface(){return true;}
 }
