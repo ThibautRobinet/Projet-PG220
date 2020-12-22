@@ -1,20 +1,14 @@
 package player;
 
-
-import board.*;
-
-//import player.IA;
+import information.UserInterface;
+import game.QuitException;
+import game.board.InvalidMoveException;
 
 public class Player{
 	int numPlayer;
 	int score;
 	String name;
 	String symbPlayer;
-	//Type playerType;
-	// Public Enum Type{
-	// 	human,
-	// 	ia
-	// }
 
 	public Player(int numPlayer, String name, String symbPlayer){
 		this.numPlayer = numPlayer;
@@ -39,10 +33,6 @@ public class Player{
 		return this.name;
 	}
 
-	private void setPlayerName(String name){
-		this.name = name;
-	}
-
 	public boolean winGame(){
 		if (this.getScore()>=2){
 			//System.out.println(state1);
@@ -57,44 +47,18 @@ public class Player{
 		this.score ++;
 	}
 
-	public boolean isIA(){
-		return false;
+	public int play(UserInterface mInterface,double[] board) throws InvalidMoveException,QuitException {
+		int columnToPlay;
+		String message = "";
+		String ans = mInterface.onInputMessage(message);
+		try{
+		columnToPlay = Integer.parseInt(ans);
+		}
+		catch (NumberFormatException e){
+			throw new InvalidMoveException("Erreur saisie colonne "+ans);
+		}
+		columnToPlay --;
+		return  columnToPlay;
 	}
-
-	public int playerMove(int numeroColumn, Board mBoard) throws InvalidMoveException {
-		Chip mChip = new Chip(symbPlayer);
-		mBoard.addChip(numeroColumn-1,mChip);//le nom des colonnes va de 1->size mais l'indice des collonnes va de 0->size-1
-		return numeroColumn-1;
-	}
-
+	public void invalidMove(){};
 }
-/*
-Class Player
-//tout private
-Var:
-	int numPlayer;
-	int score;
-	String name;
-	String symbPlayer;
-	Type playerType;
-	IA playerIA;
- Public Enum Type{
-	human,
-	ia
-}
-Constructeur:
-	Player(int numPlayer,String symbPlayer);
-Functions:
-	int getNum();
-	int getScore();
-	void winGame();
-	String getSymbol();
-	void setPlayerName(String name);
-	String getPlayerName();
-	void playerMove(int numeroColumn, Board mBoard){
-		Chip mChip = new Chip(symbPlayer);
-		mBoard.addChip(numeroColumn,mChip)
-	}
-Erreurs:
-	//erreur column pleine
-*/

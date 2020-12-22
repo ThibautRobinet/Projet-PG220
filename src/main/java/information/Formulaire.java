@@ -1,13 +1,8 @@
 package information;
 
-import java.awt.EventQueue;
-import java.awt.LayoutManager;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.Graphics;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import board.Board;
-import game.FormulaireGameHandle;
 import player.Player;
 import player.IA;
 
@@ -26,15 +19,10 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
-import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
-import javax.swing.JCheckBox;
 import javax.swing.BorderFactory;
 
-public class Formulaire extends JFrame {
+public final class Formulaire extends JFrame {
 
     private Fenetre mFenetre;
 
@@ -117,10 +105,8 @@ public class Formulaire extends JFrame {
         panel.add(lbl);
 
         //selector
-        JComboBox comboBox = new JComboBox();
-        comboBox.addItem(2);
-        comboBox.addItem(3);
-        comboBox.addItem(4);
+        JComboBox<String> comboBox = new JComboBox<>(new String[] { "2","3","4"});
+
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 numberOfPlayerChange(comboBox.getSelectedIndex() + 2);
@@ -195,10 +181,8 @@ public class Formulaire extends JFrame {
         panel.add(lbl);
 
         //selector
-        JComboBox comboBox = new JComboBox();
-        comboBox.addItem(2);
-        comboBox.addItem(3);
-        comboBox.addItem(4);
+        JComboBox<String> comboBox = new JComboBox<>(new String[] { "2","3","4", });
+
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 mancheToWin = comboBox.getSelectedIndex() + 2;
@@ -241,9 +225,8 @@ public class Formulaire extends JFrame {
         //type
         JLabel type = new JLabel("Type :");
         panel.add(type);
-        JComboBox comboBox = new JComboBox();
-        comboBox.addItem("humain");
-        comboBox.addItem("ia");
+
+        JComboBox<String> comboBox = new JComboBox<>(new String[] { "humain","ia"});
         panel.add(comboBox);
 
         //adding listener
@@ -301,18 +284,9 @@ public class Formulaire extends JFrame {
         System.out.println(lines + ":"+columns);
         System.out.println(numberOfPlayer + "=>" + mancheToWin);
         for (Player p : players){
-            System.out.println(p.getNum() + " = " +p.getPlayerName() + " ia?"+p.isIA());
+            System.out.println(p.getNum() + " = " +p.getPlayerName());
         }
        gameStarted = true;
-        /*
-         * FormulaireGameHandle mGameHandle; UserInterface mInterface; boolean running;
-         * mInterface = new UserInterface(); mGameHandle = new
-         * FormulaireGameHandle(mInterface,lines,columns,numberOfPlayer,mancheToWin,
-         * allPlayers); createWindows(mGameHandle.getBoard()); running = true;
-         * while(running){ //the game is running mGameHandle.nextRound();
-         * mFenetre.setBoard(mGameHandle.getBoard()); //if a player win we stop the
-         * program running = !mGameHandle.checkIfPlayerWin(); //mFenetre.u }
-         */
     }
 
     public boolean gameIsStarted(){return gameStarted;}
@@ -320,7 +294,7 @@ public class Formulaire extends JFrame {
     private void updatePlayer(int num, String name, int type) {
         switch (type) {
             case 1:
-                players.set(num - 1, new IA(num, name, String.valueOf(num)));
+                players.set(num - 1, new IA(num, name, String.valueOf(num),columns));
                 break;
             default:
                 players.set(num - 1, new Player(num, name, String.valueOf(num)));

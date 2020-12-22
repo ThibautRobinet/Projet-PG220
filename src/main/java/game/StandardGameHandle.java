@@ -1,23 +1,21 @@
 package game;
 
 import information.UserInterface;
-import board.StandardBoard;
-import board.Board;
+import game.board.*;
 
-public class StandardGameHandle extends GameHandle {
+public final class StandardGameHandle extends GameHandle {
 
-	
-	public StandardGameHandle(UserInterface mInterface) {
+	public StandardGameHandle(UserInterface mInterface) throws QuitException{
 		super(mInterface);
 	}
  
 	@Override
-	protected void initGameHandle(){
-		super.numberOfPlayer = 2;
-		createPlayers();
+	final void initGameHandle()throws QuitException{
+		this.numberOfPlayer = 2;
 		Board mBoard = new StandardBoard();
-		super.game = new Game(numberOfPlayer, mBoard,super.gamePlayers);
-		System.out.println(game.getBoard().toString());
+		this.game = new Game(mBoard,this.gamePlayers);
+		createPlayers();
+		mHisto.newManche();
 	}
 
 }

@@ -2,9 +2,7 @@ package information;
 
 import java.util.concurrent.TimeUnit;
 
-import board.Board;
-
-public class FenetreInterface extends UserInterface {
+public final class FenetreInterface extends UserInterface {
 
     Fenetre mFenetre;
 
@@ -24,14 +22,15 @@ public class FenetreInterface extends UserInterface {
         return mFenetre.getInput();
     }
 
-    public void createFenetre(Board mBoard){
-        mFenetre = new Fenetre(mBoard);
+    public void createFenetre(){
+        mFenetre = new Fenetre();
         mFenetre.setVisible(true);
     }
 
-    public void updateFenetreBoard(Board b){
-        mFenetre.setBoard(b);
+    public void updateBoard(String s){
+        mFenetre.printBoard(s);
     }
+
     @Override
     public boolean isFenetreInterface(){return true;}
 }
