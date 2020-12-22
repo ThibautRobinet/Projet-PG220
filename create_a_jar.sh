@@ -1,6 +1,6 @@
 #!/bin/bash
 make
 cd build
-jar -cfe jeuFenetre.jar MainFormulaire $(find . -name "*.class")
+jar -cfe puissance.jar MainFormulaire $(find . -name "*.class")
 cd ..
-cp build/jeuFenetre.jar jeuFenetre.jar
+cp build/puissance.jar puissance.jar

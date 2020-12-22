@@ -28,10 +28,10 @@ create_jar:all
 	./create_a_jar.sh
 
 run_jar:
-	java -jar jeuFenetre.jar
+	java -jar puissance.jar
 
 clean:
-	rm -rf jeuFenetre.jar
+	rm -rf puissance.jar
 	rm -rf human_move.txt
 	rm -rf player*.txt
 	rm -rf build*/*
